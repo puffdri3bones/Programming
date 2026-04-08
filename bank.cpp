@@ -18,11 +18,53 @@ class Teller{
         
 };
 
+int create_account(){
+
+    ofstream out_file("data.data");
+
+    Teller my_obj;
+
+    cout << "Enter Teller ID: " << "\n";
+
+    cin >> my_obj.id;
+
+    cout << "Enter Teller Full Name: " << "\n";
+
+    cin >> my_obj.full_name;
+
+    cout << "Create Teller Password: " << "\n";
+
+    cin >> my_obj.password;
+
+    cout << "Enter Branch Code: " << "\n";
+
+    cin >> my_obj.branch_code;
+
+    hash<string> pass_hash;    
+
+    size_t hashed_password = pass_hash(my_obj.password);
+
+    cout << hashed_password;
+
+        if (out_file.is_open()){
+
+            out_file << my_obj.id << "\n";
+
+            out_file << my_obj.full_name << "\n";
+
+            out_file << hashed_password << "\n";
+
+            out_file << my_obj.branch_code << "\n";
+
+
+        }
+
+    return hashed_password;
+}
 
 
 int main(){
 
-    ofstream out_file("data.data");
 
     bool run = true;
 
@@ -42,44 +84,9 @@ int main(){
 
         if (choice == 1){
 
-            Teller my_obj;
+           create_account();
 
-            cout << "Enter Teller ID: " << "\n";
-
-            cin >> my_obj.id;
-
-            cout << "Enter Teller Full Name: " << "\n";
-
-            cin >> my_obj.full_name;
-
-            cout << "Create Teller Password: " << "\n";
-
-            cin >> my_obj.password;
-
-            cout << "Enter Branch Code: " << "\n";
-
-            cin >> my_obj.branch_code;
-
-            hash<string> pass_hash;    
-
-            int hashed_password = pass_hash(my_obj.password);
-
-            cout << hashed_password;
-
-            if (out_file.is_open()){
-
-                out_file << my_obj.id;
-
-                out_file << my_obj.full_name;
-
-                out_file << hashed_password;
-
-                out_file << my_obj.branch_code;
-
-                run = false; 
-
-            }
-        
+           run = false;
 
         }else if(choice == 2){
 
@@ -87,8 +94,6 @@ int main(){
             string pass_word;
 
             cout << "Please Enter ID & Password Below: " << "\n";
-
-            cin >> pass_word;
 
             cout << "ID Number:" << "\n";
 
@@ -98,10 +103,27 @@ int main(){
 
             cin >> pass_word;
 
-            ifstream file("data.data");
-            if (!file.is_open()) return 1;
+            hash<string> hash_pass;
+            size_t hashed_password = hash_pass(pass_word);
 
-            string target = hashed_password;
+            string pass = to_string(hashed_password);
+
+            cout << pass;
+
+            ifstream file("data.data");
+            string word, target = identify;
+            string wordd, targett = pass;
+
+            bool found = false;
+
+            while (file >> word){
+                if (wordd == targett){
+                    found = true;
+                    cout << "word found" << "\n";
+                    run = false;
+                } 
+            }
+
 
         }else if(choice == 4){
 
