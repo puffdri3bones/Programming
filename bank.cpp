@@ -18,6 +18,8 @@ class Teller{
         
 };
 
+
+
 int create_account(){
 
     ofstream out_file("data.dat");
@@ -76,9 +78,9 @@ int main(){
 
         cout << "Enter Choice: " << "\n";
 
-        cout << "1. Create Account" << "\n";
+        cout << "1. Create Teller Account" << "\n";
 
-        cout << "2. View Account Details" << "\n";
+        cout << "2. Login As Teller" << "\n";
 
         cout << "4. Exit" << "\n";
 
@@ -86,9 +88,9 @@ int main(){
 
         if (choice == 1){
 
-           create_account();
-
-           run = false;
+           
+            create_account();
+           
 
         }else if(choice == 2){
 
@@ -116,17 +118,34 @@ int main(){
 
             string file_id, file_name, file_password, file_branch;
 
-            while (file >> file_id >> file_name >> file_password >> file_branch){
+            while (getline(file, file_id) && 
+                   getline(file, file_name) && 
+                   getline(file, file_password) &&
+                   getline(file, file_branch)){
+
                 if (file_id == identify && file_password == pass){
                     found = true;
-                    cout << "word found" << "\n";
-                    break;
+                    cout << "Login Successful" << "\n";
+
+                    int choices;
+
+                    cout << "1. Register New Customer" << "\n";
+
+                    run = false;
+
+                    if (choices == 1){
+
+                        cout << "enter customer details";
+
+                    }
+                    
+
                 } 
 
-                /*if (!found){
+                if (!found){
 
-                    cout << "Invalid id or password";
-                }*/
+                    cout << "Invalid Id or Password" << "\n";
+                }
             }
 
 
