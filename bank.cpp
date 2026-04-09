@@ -20,7 +20,7 @@ class Teller{
 
 int create_account(){
 
-    ofstream out_file("data.data");
+    ofstream out_file("data.dat");
 
     Teller my_obj;
 
@@ -30,7 +30,9 @@ int create_account(){
 
     cout << "Enter Teller Full Name: " << "\n";
 
-    cin >> my_obj.full_name;
+    cin.ignore();
+
+    getline(cin, my_obj.full_name);
 
     cout << "Create Teller Password: " << "\n";
 
@@ -108,20 +110,23 @@ int main(){
 
             string pass = to_string(hashed_password);
 
-            cout << pass;
-
-            ifstream file("data.data");
-            string word, target = identify;
-            string wordd, targett = pass;
+            ifstream file("data.dat");
 
             bool found = false;
 
-            while (file >> word){
-                if (wordd == targett){
+            string file_id, file_name, file_password, file_branch;
+
+            while (file >> file_id >> file_name >> file_password >> file_branch){
+                if (file_id == identify && file_password == pass){
                     found = true;
                     cout << "word found" << "\n";
-                    run = false;
+                    break;
                 } 
+
+                /*if (!found){
+
+                    cout << "Invalid id or password";
+                }*/
             }
 
 
