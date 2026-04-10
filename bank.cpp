@@ -131,11 +131,12 @@ int main(){
 
                     cout << "1. Register New Customer" << "\n";
 
-                    run = false;
+                    cin >> choices;
+
 
                     if (choices == 1){
 
-                        cout << "enter customer details";
+                        cout << "enter customer details" << "\n";
 
                     }
                     
