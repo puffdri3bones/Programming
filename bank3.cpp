@@ -27,8 +27,6 @@ vector<Branch> branches = {
 
 //Teller ID, Full Name, Password, Branch Code
 
-
-
 class Teller{
     public:
         string id;
@@ -125,8 +123,6 @@ int create_teller_account(){
 
     size_t hashed_password = pass_hash(salted);
 
-    cout << hashed_password;
-
         if (out_file.is_open()){
 
             out_file << my_obj.id << "\n";
@@ -171,8 +167,6 @@ bool validate_email(string email){
     return email.find("@") != string::npos &&
            email.find(".") != string::npos;
         }
-
-
 
 void register_cust(string branch_code){
     Account * acc = nullptr;
@@ -310,14 +304,17 @@ bool login_customer(string & acc_no){
             }
 
                     if (!found){
+
                         cout << "Account not found" << "\n";
                         return false;
+
                     }
 
                     attempts++;
                     cout << "Attempts left: " << (3 - attempts) << "\n";
 
                 }
+
                 cout << "Too many failed attempts. Account locked." << "\n";
                 return false;
 
@@ -363,11 +360,8 @@ bool load_customer(string acc_no, string pin_input,
 
                         }
 
-                       
-
                     }
 
-                
                 }
     return false;
 }
@@ -432,8 +426,10 @@ void deposit(string acc_no){
     cin >> amount;
 
     if (amount <=0){
+
         cout << "Invalid Amount" << "\n";
         return;
+
     }
 
     ifstream file("customers.dat");
@@ -487,6 +483,7 @@ void deposit(string acc_no){
 
 
         }
+
         file.close();
         temp.close();
 
@@ -498,6 +495,7 @@ void deposit(string acc_no){
         if (!found){
 
             cout << "Amount Not Found" << "\n";
+
         }
 }
 
@@ -863,19 +861,19 @@ double calc_interest(string type, double balance){
 
     if (type == "1"){
 
-        rate == 0.05;
+        rate = 0.05;
 
     }else if(type == "2"){
 
-        rate == 0.02;
+        rate = 0.02;
 
     }else if(type == "3"){
 
-        rate == 0.08;
+        rate = 0.08;
 
     }else if(type == "4"){
 
-        rate == 0.03;
+        rate = 0.03;
 
     }
 
@@ -1287,8 +1285,6 @@ int main(){
 
                             compare_branches();
 
-                        
-                        
                         }else if(choices == 10){
 
                             teller_session = false;
@@ -1304,8 +1300,7 @@ int main(){
                     break; 
                             
                 } 
-
-                        
+        
                     }
             if (!found){
 
